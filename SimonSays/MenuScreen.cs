@@ -6,11 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Media;
 
 namespace SimonSays
 {
     public partial class MenuScreen : UserControl
     {
+        
+
         public MenuScreen()
         {
             InitializeComponent();

@@ -16,15 +16,20 @@ namespace SimonSays
     {
         //TODO: create guess variable to track what part of the pattern the user is at
         Random rand = new Random();
+
         int guessIndex;
+
         List<int> playerGuess = new List<int>();
 
         //Buttons
         Button[] buttons = new Button[4];
-        List<Color> baseColors = new List<Color>(new Color[] { Color.ForestGreen, Color.DarkRed, Color.Goldenrod, Color.DarkBlue });
-        List<Color> highlightColors = new List<Color>(new Color[] { Color.GreenYellow, Color.Red, Color.Yellow, Color.DodgerBlue });
 
-        // List<SoundPlayer> gameSounds = new List<SoundPlayer>(new SoundPlayer[] {SoundPlayer(Properties.Resources.red), });
+        List<Color> baseColors = new List<Color>(new Color[] { Color.PaleGoldenrod, Color.Firebrick, Color.Gold, Color.LightCoral });
+        List<Color> highlightColors = new List<Color>(new Color[] { Color.GreenYellow, Color.Red, Color.Orange, Color.DodgerBlue });
+
+         List<SoundPlayer> gameSounds = new List<SoundPlayer>(new SoundPlayer[] {new SoundPlayer(Properties.Resources.Glep_Sound),
+             new SoundPlayer(Properties.Resources.Alan_Sound), new SoundPlayer(Properties.Resources.Charlie_sound),
+                new SoundPlayer(Properties.Resources.Pim_Sound)});
         public GameScreen()
         {
             InitializeComponent();
@@ -57,10 +62,10 @@ namespace SimonSays
             for (int i = 0; i < Form1.pattern.Count; i++)
             {
                 buttons[Form1.pattern[i]].BackColor = highlightColors[Form1.pattern[i]];
-                Refresh();
+                buttons[Form1.pattern[i]].Refresh();
                 Thread.Sleep(1000);
                 buttons[Form1.pattern[i]].BackColor = baseColors[Form1.pattern[i]];
-                Refresh();
+                buttons[Form1.pattern[i]].Refresh();
                 Thread.Sleep(1000);
             }
             //TODO: set guess index value back to 0
@@ -93,15 +98,18 @@ namespace SimonSays
             if (Form1.pattern[guessIndex] == 0)
             {
                 greenButton.BackColor = highlightColors[0];
-                Refresh();
+                greenButton.Refresh();
                 Thread.Sleep(1000);
                 greenButton.BackColor = baseColors[0];
-                Refresh();
+                greenButton.Refresh();
                 Thread.Sleep(1000);
-            }
-            if (guessIndex == Form1.pattern.Count)
-            {
+
+                guessIndex++;
                 ComputerTurn();
+            }
+            else
+            {
+                GameOver();
             }
             // set button colour back to original
             // add one to the guess index
@@ -114,17 +122,19 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 1)
             {
-                redButton.Enabled = true;
                 redButton.BackColor = highlightColors[1];
-                Refresh();
+                redButton.Refresh();
                 Thread.Sleep(1000);
                 redButton.BackColor = baseColors[1];
-                Refresh();
+                redButton.Refresh();
                 Thread.Sleep(1000);
-            }
-            else if (guessIndex == Form1.pattern.Count)
-            {
+
+                guessIndex++;
                 ComputerTurn();
+            }
+            else
+            {
+                GameOver();
             }
         }
 
@@ -132,17 +142,19 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 2)
             {
-                yellowButton.Enabled = true;
                 yellowButton.BackColor = highlightColors[2];
-                Refresh();
+                yellowButton.Refresh();
                 Thread.Sleep(1000);
                 yellowButton.BackColor = baseColors[2];
-                Refresh();
+                yellowButton.Refresh();
                 Thread.Sleep(1000);
-            }
-            else if (guessIndex == Form1.pattern.Count)
-            {
+
+                guessIndex++;
                 ComputerTurn();
+            }
+            else
+            {
+                GameOver();
             }
         }
 
@@ -150,17 +162,19 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 3)
             {
-                blueButton.Enabled = true;
                 blueButton.BackColor = highlightColors[3];
-                Refresh();
+                blueButton.Refresh();
                 Thread.Sleep(1000);
                 blueButton.BackColor = baseColors[3];
-                Refresh();
+                blueButton.Refresh();
                 Thread.Sleep(1000);
-            }
-            else if (guessIndex == Form1.pattern.Count)
-            {
+
+                guessIndex++;
                 ComputerTurn();
+            }
+            else
+            {
+                GameOver();
             }
         }
     }
